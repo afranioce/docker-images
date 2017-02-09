@@ -13,7 +13,6 @@ RUN eval $(ssh-agent -s) \
   && echo -e "\n- .rsync-filter\n- .git/\n- .git*\n- *.old\n- *.bak\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
   && dos2unix .rsync-filter
 
-COPY rsync-entrypoint.sh /usr/local/bin/
-RUN ln -s usr/local/bin/rsync-entrypoint.sh / # backwards compat
+COPY rsync-entrypoint.sh /
 
 ENTRYPOINT ["rsync-entrypoint.sh"]
