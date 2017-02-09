@@ -11,7 +11,7 @@ RUN eval $(ssh-agent -s) \
   && mkdir -p ~/.ssh \
   && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config \
   && echo -e "\n- .rsync-filter\n- .git/\n- .git*\n- *.old\n- *.bak\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
-  && touch .rsync-filter && dos2unix .rsync-filter
+  && dos2unix .rsync-filter
 
 COPY rsync-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/rsync-entrypoint.sh / # backwards compat
