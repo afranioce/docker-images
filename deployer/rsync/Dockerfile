@@ -13,7 +13,7 @@ RUN eval $(ssh-agent -s) \
   && echo -e "\n- .rsync-filter\n- .git/\n- .git*\n- *.old\n- *.bak\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
   && touch .rsync-filter && dos2unix .rsync-filter
 
-CMD deployer-exec() { \
-  ssh-add <(echo "$DEPLOY_SSH_PUBLIC_KEY_BASE64" | base64 -d) \
-  && rsync -avuzpg --delete --delete-excluded --filter='dir-merge .rsync-filter' $DEPLOY_PROJECT_DIR/. $DEPLOY_CONNECTION/$DEPLOY_PROJECT_PATH \
-  ; }
+COPY rsync-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/rsync-entrypoint.sh / # backwards compat
+
+ENTRYPOINT ["rsync-entrypoint.sh"]

@@ -5,9 +5,11 @@ MAINTAINER Afranio Martins <afranioce@gmail.com>
 ENV DEPLOY_USER           ''
 ENV DEPLOY_PASSWORD       ''
 ENV DEPLOY_HOST           ''
+ENV DEPLOY_PUBLIC_DIR     ''
 
 RUN apk add --no-cache lftp
 
-CMD deployer-exec() { \
-  lftp -u $DEPLOY_USER,$DEPLOY_PASSWORD -e "set ssl:verify-certificate no; mirror -n -R -vvv --exclude-glob-from '.syncignore' $DEPLOY_PROJECT_DIR/. $DEPLOY_PUBLIC_DIR/$DEPLOY_PROJECT_PATH" $DEPLOY_HOST \
-  ; }
+COPY lftp-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/lftp-entrypoint.sh / # backwards compat
+
+ENTRYPOINT ["lftp-entrypoint.sh"]
