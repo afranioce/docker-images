@@ -1,4 +1,4 @@
-FROM afranioce:deployer:latest
+FROM afranioce/deployer:latest
 
 MAINTAINER Afranio Martins <afranioce@gmail.com>
 
