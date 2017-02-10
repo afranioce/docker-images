@@ -14,5 +14,4 @@ RUN echo -e "\n.syncignore\n.git/\n.git*\n*.old\n*.bak\n*.patch\n*.diff\ncompose
 
 COPY deploy.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/deploy.sh \
-  && alias dpl = 'deploy.sh'
+RUN chmod +x /usr/local/bin/deploy.sh
