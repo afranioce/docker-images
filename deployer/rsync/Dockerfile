@@ -13,8 +13,7 @@ RUN eval $(ssh-agent -s) \
   && echo -e "\n- .rsync-filter\n- .git/\n- .git*\n- *.old\n- *.bak\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
   && dos2unix .rsync-filter
 
-COPY rsync-entrypoint.sh /usr/local/bin/
+COPY deploy.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/rsync-entrypoint.sh
-
-ENTRYPOINT ["rsync-entrypoint.sh"]
+RUN chmod +x /usr/local/bin/deploy.sh \
+  && alias dpl = 'deploy.sh'
