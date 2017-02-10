@@ -7,8 +7,8 @@ ENV DEPLOY_PASSWORD       ''
 ENV DEPLOY_HOST           ''
 ENV DEPLOY_PUBLIC_DIR     ''
 
-RUN apk -U add --no-cache \
-  && lftp
+RUN apk update \
+  && apk add --no-cache lftp
 
 RUN echo -e "\n.syncignore\n.git/\n.git*\n*.old\n*.bak\n*.patch\n*.diff\ncomposer.*" >> .syncignore \
   && dos2unix .syncignore
