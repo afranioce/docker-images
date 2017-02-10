@@ -15,4 +15,6 @@ RUN eval $(ssh-agent -s) \
 
 COPY rsync-entrypoint.sh /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/rsync-entrypoint.sh
+
 ENTRYPOINT ["rsync-entrypoint.sh"]
