@@ -10,7 +10,7 @@ RUN apk update \
 
 RUN mkdir -p ~/.ssh \
   && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config \
-  && echo -e "\n- .rsync-filter\n- .git/\n- .git*\n- *.old\n- *.bak\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
+  && echo -e "\n- .git/\n- .git*\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
   && dos2unix .rsync-filter
 
 COPY deploy.sh /usr/local/bin/
