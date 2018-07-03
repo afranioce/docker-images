@@ -10,9 +10,8 @@ ENV DEPLOY_PUBLIC_DIR     ''
 RUN apk update \
   && apk add --no-cache lftp
 
-RUN echo -e "\n.syncignore\n.git/\n.git*\n*.old\n*.bak\n*.patch\n*.diff\ncomposer.*" >> .syncignore \
+RUN echo -e "\n.git/\n.git*\n*.patch\n*.diff\ncomposer.*" >> .syncignore \
   && dos2unix .syncignore
 
-COPY deploy.sh /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/deploy.sh
+RUN chmod +x deploy.sh
+COPY deploy.sh /usr/local/bin/deploy
