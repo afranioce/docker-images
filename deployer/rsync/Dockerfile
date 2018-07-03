@@ -13,6 +13,5 @@ RUN mkdir -p ~/.ssh \
   && echo -e "\n- .git/\n- .git*\n- *.patch\n- *.diff\n- composer.*" >> .rsync-filter \
   && dos2unix .rsync-filter
 
-COPY deploy.sh /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/deploy.sh
+RUN chmod +x deploy.sh
+COPY deploy.sh /usr/local/bin/deploy
